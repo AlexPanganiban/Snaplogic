@@ -1,0 +1,10 @@
+{
+	"DBSchema": "TBLANDDEV",
+    "ProcessType": "INGRESS",
+	"SystemName": "RQ4",
+    "CompanyCode": "SPRINGMOBILE",
+	"TeradataAccount": "TB_JDBC_Teradata",
+	"TO_EMAIL": "yugandharprasadbodireddy@gamestop.com",
+	"EMAIL_SUBJECT": "SnapLogic Ingestion Process Failed from RQ4",
+	"EMAIL_TEXT": ""
+}
