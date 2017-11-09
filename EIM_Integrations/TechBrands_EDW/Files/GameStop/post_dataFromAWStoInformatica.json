@@ -1,0 +1,10 @@
+{
+	"DBSchema": "TBLANDDEV",
+    "ProcessType": "EGGRESS",
+	"SystemName": "AWS",
+    "CompanyCode": "SPRINGMOBILE",
+	"TeradataAccount": "TB_JDBC_Teradata",
+	"TO_EMAIL": "yugandharprasadbodireddy@gamestop.com",
+	"EMAIL_SUBJECT": "SnapLogic Eggestion Process Failed from AWS",
+	"EMAIL_TEXT": ""
+}
