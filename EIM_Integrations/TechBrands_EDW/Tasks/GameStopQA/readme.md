@@ -1,0 +1,1 @@
+TechBrands_EDW QA task contents from snaplogic
