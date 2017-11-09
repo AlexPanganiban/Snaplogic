@@ -1,0 +1,98 @@
+[
+  {
+    "start_dt" : "20170329",
+    "end_dt" : "20171231",
+    "skus" : 123456,
+    "category_id" : "1",
+    "program_id" : 1,
+    "program_name" : "Test Program 1",
+    "perk_id" : 1,
+    "campaign_ids" : 2,
+    "transaction_type" : "Purchase",
+    "req_no" : 2
+  },
+  {
+    "start_dt" : "20170329",
+    "end_dt" : "20171231",
+    "skus" : 323223,
+    "category_id" : "1",
+    "program_id" : 1,
+    "program_name" : "Test Program 1",
+    "perk_id" : 1,
+    "campaign_ids" : 2,
+    "transaction_type" : "Purchase",
+    "req_no" : 2
+  },
+  {
+    "start_dt" : "20170329",
+    "end_dt" : "20171231",
+    "skus" : 345678,
+    "category_id" : "1",
+    "program_id" : 2,
+    "program_name" : "Test Program 2",
+    "perk_id" : 2,
+    "campaign_ids" : 2,
+    "transaction_type" : "Purchase",
+    "req_no" : 3
+  },
+  {
+    "start_dt" : "20170325",
+    "end_dt" : "20180401",
+    "skus" : 952752,
+    "category_id" : "952",
+    "program_id" : 1,
+    "program_name" : "Test Program 1",
+    "perk_id" : 1,
+    "campaign_ids" : 2,
+    "transaction_type" : "Purchase",
+    "req_no" : 4
+  },
+  {
+    "start_dt" : "20170325",
+    "end_dt" : "20180401",
+    "skus" : 930752,
+    "category_id" : "930",
+    "program_id" : 2,
+    "program_name" : "Test Program 2",
+    "perk_id" : 2,
+    "campaign_ids" : 2,
+    "transaction_type" : "Purchase",
+    "req_no" : 5
+  },
+  {
+    "start_dt" : "20170329",
+    "end_dt" : "20171231",
+    "skus" : 123456,
+    "category_id" : "1",
+    "program_id" : 1,
+    "program_name" : "Test Program 1",
+    "perk_id" : 1,
+    "campaign_ids" : 842,
+    "transaction_type" : "Purchase",
+    "req_no" : 2
+  },
+  {
+    "start_dt" : "20170329",
+    "end_dt" : "20171231",
+    "skus" : 323223,
+    "category_id" : "1",
+    "program_id" : 1,
+    "program_name" : "Test Program 1",
+    "perk_id" : 1,
+    "campaign_ids" : 842,
+    "transaction_type" : "Purchase",
+    "req_no" : 2
+  },
+  {
+    "start_dt" : "20170325",
+    "end_dt" : "20180401",
+    "skus" : 952752,
+    "category_id" : "952",
+    "program_id" : 1,
+    "program_name" : "Test Program 1",
+    "perk_id" : 1,
+    "campaign_ids" : 842,
+    "transaction_type" : "Purchase",
+    "req_no" : 4
+  }
+]
