@@ -1,0 +1,1 @@
+TechBrands_EDW QA file contents from snaplogic
