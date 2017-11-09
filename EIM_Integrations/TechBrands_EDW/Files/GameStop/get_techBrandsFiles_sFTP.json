@@ -1,0 +1,42 @@
+{
+	"FileSubject": "SpringContactList",
+    "SourcePath": "sftp://34.230.237.61/rq/",
+	"DestinationPath": "s3:///tb-us-east-1-dev-landing/",
+	"SourceFilter": "Spring*.csv",
+    "DestinationFile": "SpringMobileStoreList_sFTP",
+    "DestFileExtenstion": ".csv",
+    "SourceAccount": "TB_SFTP_DEV",
+    "DestinationAccount": "TB_AWS_S3_DEV",
+	"Archive": "N",
+	"TO_EMAIL": "yugandharprasadbodireddy@gamestop.com",
+	"EMAIL_SUBJECT": "TechBrands-SnapLogic Ingestion",
+	"EMAIL_TEXT": ""
+}
+{
+	"FileSubject": "DealerCodes",
+    "SourcePath": "sftp://34.230.237.61/rq/",
+	"DestinationPath": "s3:///tb-us-east-1-dev-landing/",
+	"SourceFilter": "Dealer*.csv",
+    "DestinationFile": "DealerCodes_sFTP",
+    "DestFileExtenstion": ".csv",
+    "SourceAccount": "TB_SFTP_DEV",
+    "DestinationAccount": "TB_AWS_S3_DEV",
+	"Archive": "N",
+	"TO_EMAIL": "yugandharprasadbodireddy@gamestop.com",
+	"EMAIL_SUBJECT": "TechBrands-SnapLogic Ingestion",
+	"EMAIL_TEXT": ""
+}
+{
+	"FileSubject": "BAE",
+    "SourcePath": "sftp://34.230.237.61/rq/",
+	"DestinationPath": "s3:///tb-us-east-1-dev-landing/",
+	"SourceFilter": "BAE*.csv",
+    "DestinationFile": "BAELocation_sFTP",
+    "DestFileExtenstion": ".csv",
+    "SourceAccount": "TB_SFTP_DEV",
+    "DestinationAccount": "TB_AWS_S3_DEV",
+	"Archive": "N",
+	"TO_EMAIL": "yugandharprasadbodireddy@gamestop.com",
+	"EMAIL_SUBJECT": "TechBrands-SnapLogic Ingestion",
+	"EMAIL_TEXT": ""
+}
