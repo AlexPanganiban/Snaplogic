@@ -1,0 +1,24 @@
+{
+	gamestop: {
+		email: {
+			recipient: 'jonathanpatton@gamestop.com',
+			sender: 'snapLogic_notification@gamestop.com',
+			cc: 'supplychainsystems@gamestop.com',
+			subject: 'SnapLogic ERROR'
+		},
+		stage: {
+			ftpsearchpath: 'sftp://ftp.gamestop.com/users/gmetest/SN/Out/OrderUpdates/',
+			ftpdestinationpath: 'sftp://ftp.gamestop.com/users/tgkboss_sterling/SN/Out/OrderUpdates/',
+			localstagedirectory: 'gv1hqqfs01.testgs.pvt/File1/DCSystems/TGK BOSS',
+			timefilter: '20',
+			radialsearchpattern: 'Cancel_*.xml',
+			tgkprefixfilter: 'TG',
+			tgkcompanyfilter: '0481',
+			gscompanyfilter: '0480'
+			},
+	    aws: {
+			queuename: 'supplychain-tgkboss-gs2tg-resources-osncancel-qa'
+		}
+	}
+	
+}
