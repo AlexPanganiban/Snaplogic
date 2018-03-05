@@ -1,0 +1,264 @@
+{
+	global: 
+	{
+		acc:
+		{
+			jdbc_teradata: 'GameStop/EIM_Integrations/TechBrands_EDW/TBEDW_JDBC_Teradata',
+			tb_aws: 'GameStop/shared/EIM_S3_Sandbox',
+			email_notify: 'GameStop/shared/SMTP_Email_Notification_Shared',
+			tb_rq4: 'GameStop/EIM_Integrations/TechBrands_EDW/TB_RQ_API',
+			tb_sftp: 'GameStop/EIM_Integrations/TechBrands_EDW/TB_SFTP',
+			tb_google: 'GameStop/EIM_Integrations/TechBrands_EDW/TB_GoogleDrive',
+			tb_googledrive: 'GameStop/EIM_Integrations/TechBrands_EDW/TB_GoogleDrive_Files',
+			smb_empty: 'GameStop/shared/Empty-Account',
+			tb_audit: 'GameStop/User Spaces/Yugandhar Bodireddy/SnapLogic_API_Test',
+			tb_emailread: 'GameStop/EIM_Integrations/TechBrands_EDW/TBEDW_Email_IMAP'
+		},
+		pipeline:
+		{
+			emailnotify: 'GameStop/EIM_Integrations/TechBrands_EDW/z_emailNotify',
+			batchstatus: 'GameStop/EIM_Integrations/TechBrands_EDW/z_getBatchStatus',
+			postinfa: 'GameStop/EIM_Integrations/TechBrands_EDW/z_postFilesToInformaticaShared',
+			postinfa_poolsize: '10',
+			rq4aws: 'GameStop/EIM_Integrations/TechBrands_EDW/z_getDataFromRQ4',
+			rq4aws_poolsize: '5',
+			sftplistaws: 'GameStop/EIM_Integrations/TechBrands_EDW/z_getFileListFromSFTP',
+			sftplistaws_poolsize: '5',
+			sftpaws: 'GameStop/EIM_Integrations/TechBrands_EDW/z_getDataFromSFTP',
+			sftpaws_poolsize: '5',
+			emaillistaws: 'GameStop/EIM_Integrations/TechBrands_EDW/z_getFileListFromEmail',
+			emaillistaws_poolsize: '5',
+			emailreadaws: 'GameStop/EIM_Integrations/TechBrands_EDW/z_getEmailInboxItems',
+			emailreadaws_poolsize: '5',
+			emailaws: 'GameStop/EIM_Integrations/TechBrands_EDW/z_getDataFromEmail',
+			emailaws_poolsize: '5',
+			gdriveawslist: 'GameStop/EIM_Integrations/TechBrands_EDW/z_getListGoogleFiles',
+			gdriveawslist_poolsize: '5',
+			gdrivefilesaws: 'GameStop/EIM_Integrations/TechBrands_EDW/z_getFilesFromGoogleDrive',
+			gdrivefilesaws_poolsize: '5',
+			googleawslist: 'GameStop/EIM_Integrations/TechBrands_EDW/z_getListGoogleSpreadSheets',
+			googleawslist_poolsize: '5',
+			audit: 'GameStop/EIM_Integrations/TechBrands_EDW/z_loadAuditTable',
+			audit_poolsize: '5',
+			exceluploadtogoogle: 'GameStop/EIM_Integrations/TechBrands_EDW/z_convertExcelToCSVwithGoogle',
+			exceluploadtogoogle_poolsize: '1',
+			writetocsv: 'GameStop/EIM_Integrations/TechBrands_EDW/z_writeExcelToCSVfromSpreadSheet',
+			writetocsv_poolsize: '1',
+			excel_emptransadj: 'GameStop/EIM_Integrations/TechBrands_EDW/z_ConvertExcelToCSV_EmployeeTransAdjustments',
+			excel_emptransadj_poolsize: '1',
+			cleangooglefiles: 'GameStop/EIM_Integrations/TechBrands_EDW/z_cleanupGoogleFiles',
+			cleangooglefiles_poolsize: '1',
+			googleaws: 'GameStop/EIM_Integrations/TechBrands_EDW/z_getDataFromGoogle',
+			googleaws_poolsize: '5'
+		},
+		var:
+		{
+			comp_spring: '4',
+			pr_ingress: 'INGRESS',
+			pr_eggress: 'EGGRESS',
+			pr_audit: 'AUDIT',
+			tdcnfgdb: 'TBCNFGDEV',
+			tderrdb: 'TBERRDEV',
+			tdaudittable: 'SNAPLOGIC_AUDIT_LOG',
+			sys_rq4: 'RQ4',
+			sys_aws: 'AWS',
+			sys_google: 'GOOGLE',
+			sys_googledrive: 'GOOGLEFILES',
+			sys_sftp: 'SFTP',
+			sys_email: 'EMAIL',
+			sys_audit: 'AUDIT',
+			retry_cnt: '3',
+			toemail1: 'yugandhar.bodireddy@capgemini.com, NeeruKulhar@gamestop.com, AltafMohammed@gamestop.com, chandra-shekhar.gurumurthy@capgemini.com, parameswari.endlooru@capgemini.com',
+			toemail: 'yugandhar.bodireddy@capgemini.com',
+			emailsubject: 'TechBrands',
+			emailtext: 'TechBrands ',
+			sldbpath: 'GameStop/EIM_Integrations/TechBrands_EDW/',
+			awsdestpath: 's3:///tb-us-east-1-dev-landing/HIST_6_MONTHS/',
+			sub_cust: 'CustomerMaster',
+			sub_emp: 'EmployeeMaster',
+			sub_inv: 'Inventory',
+			sub_invlist: 'InventoryListReport',
+			sub_prod: 'ProductMaster',
+			sub_store: 'StoreMaster',
+			sub_sales: 'Sales',
+			eggress_24hrs: 'TECHBRANDS_24HRS_BATCH',
+			eggress_8hrs: 'TECHBRANDS_8HRS_BATCH',
+			eggress_15mins: 'TECHBRANDS_15MINS_BATCH'
+		},
+		aws:
+		{
+			path:
+			{
+				delivery_regular: 's3:///tb-us-east-1-dev-delivery-regular-qa',
+				delivery_pii: 's3:///tb-us-east-1-dev-delivery-pii-customer-qa',
+				ATT_DLR_CDS: this.delivery_regular + '/WT_ATT_DELR_CDS/Current/',
+				ATT_SALES_ACTLS: this.delivery_regular + '/WT_ATT_SALES_ACTLS/Current/',
+				ATT_SHIP_DTLS: this.delivery_regular + '/WT_ATT_SHIP_DTLS/Current/',
+				CUST: this.delivery_regular + '/WT_CUST/Current/',
+				CUST_PII: this.delivery_pii + '/WT_CUST_PII/Current/',
+				EMP: this.delivery_regular + '/WT_EMP/Current/',				
+				EMP_C_C_TRAING: this.delivery_regular + '/WT_EMP_C_C_TRAING/Current/',
+				EMP_GOALS: this.delivery_regular + '/WT_EMP_GOALS/Current/',
+				EMP_OPER_EFCNY: this.delivery_regular + '/WT_EMP_OPER_EFCNY/Current/',
+				EMP_STORE_ASSOC: this.delivery_regular + '/WT_EMP_STORE_ASSOC/Current/',
+				EMP_TRANS_ADJMNTS: this.delivery_regular + '/WT_EMP_TRANS_ADJMNTS/Current/',
+				PO_DTLS: this.delivery_regular + '/WT_PO_DTLS/Current/',
+				PROD: this.delivery_regular + '/WT_PROD/Current/',
+				PROD_CAT: this.delivery_regular + '/WT_PROD_CAT/Current/',
+				RCV_INVOICE_DTLS: this.delivery_regular + '/WT_RCV_INVOICE_DTLS/Current/',
+				SALES_DTLS: this.delivery_regular + '/WT_SALES_DTLS/Current/',
+				SALES_LEADS: this.delivery_regular + '/WT_SALES_LEADS/Current/',
+				STORE: this.delivery_regular + '/WT_STORE/Current/',
+				STORE_CUST_EXPRC: this.delivery_regular + '/WT_STORE_CUST_EXPRC/Current/',
+				STORE_DLR_CD_ASSOC: this.delivery_regular + '/WT_STORE_DELR_CD_ASSOC/Current/',
+				STORE_DLY_GOAL_FCST: this.delivery_regular + '/WT_STORE_DLY_GOAL_FCST/Current/',
+				STORE_GOALS: this.delivery_regular + '/WT_STORE_GOALS/Current/',
+				STORE_HIER: this.delivery_regular + '/WT_STORE_HIER/Current/',
+				STORE_INV: this.delivery_regular + '/WT_STORE_INV/Current/',
+				STORE_MGMT_HIER: this.delivery_regular + '/WT_STORE_MGMT_HIER/Current/',
+				STORE_RCRTING_HDCT: this.delivery_regular + '/WT_STORE_RCRTING_HDCT/Current/',
+				STORE_TRAFFIC: this.delivery_regular + '/WT_STORE_TRAFFIC/Current/',
+				STORE_TRANS_ADJMNTS: this.delivery_regular + '/WT_STORE_TRANS_ADJMNTS/Current/',
+				TB_GOAL_PT: this.delivery_regular + '/WT_TB_GOAL_PT/Current/',
+				TB_HIER_LVL: this.delivery_regular + '/WT_TB_HIER_LVL/Current/',
+				TB_INV_KPIS: this.delivery_regular + '/WT_TB_INV_KPIS/Current/',
+				TB_KPI_LIST: this.delivery_regular + '/WT_TB_KPI_LIST/Current/',
+				TB_SALES_KPIS: this.delivery_regular + '/WT_TB_SALES_KPIS/Current/'
+			}
+		},
+		eggress:
+		{
+			destpath: 'file:////gv1hqqcifs01.TESTGS.PVT/informatica/Dev/infa_shared/SrcFiles/EDW_TechBrands/',
+			srcfilter: '*.csv'
+		},
+		rq:
+		{
+			datesuffix: Date.now().toLocaleDateTimeString('{"format":"yyyy-MM-dd\'T\'hh:mm:ss", "timeZone":"CST"}'),
+			source_endpoint: 'https://rqdataconnect10.iqmetrix.net',
+			destext: '.csv',
+			urlparam: 'Encoding=utf-8&CompanyId=14539',
+			Location: x => this.source_endpoint + '/reports/locationmasterlistreport?' + this.urlparam,
+			CategoryNumber: x => this.source_endpoint + '/lists/categorynumber?' + this.urlparam,
+			ProductIdentifier: x => this.source_endpoint + '/lists/productidentifier?' + this.urlparam + '&IncludeDisabled=1',
+			Product_PT0: x => this.source_endpoint + '/inventory/ProductMasterList?'+ this.urlparam +'&StoreIDLoggedIn=-1&SearchMethod=0&SearchCriteria=10&Enabled=2&ProductType=0',
+			Product_PT1: x => this.source_endpoint + '/inventory/ProductMasterList?'+ this.urlparam +'&StoreIDLoggedIn=-1&SearchMethod=0&SearchCriteria=10&Enabled=2&ProductType=1',
+			Product_PT2: x => this.source_endpoint + '/inventory/ProductMasterList?'+ this.urlparam +'&StoreIDLoggedIn=-1&SearchMethod=0&SearchCriteria=10&Enabled=2&ProductType=2',
+			Product_PT3: x => this.source_endpoint + '/inventory/ProductMasterList?'+ this.urlparam +'&StoreIDLoggedIn=-1&SearchMethod=0&SearchCriteria=10&Enabled=2&ProductType=3',
+			Product_PT4: x => this.source_endpoint + '/inventory/ProductMasterList?'+ this.urlparam +'&StoreIDLoggedIn=-1&SearchMethod=0&SearchCriteria=10&Enabled=2&ProductType=4',
+			ReceivingInvoiceHistory: x => this.source_endpoint + '/reports/ReceivingInvoiceHistoryReport_ByProduct?VendorID=-1&' + this.urlparam + '&StartDate=' + x + '&StopDate=' + this.datesuffix,
+			PurchaseOrder: x => this.source_endpoint + '/reports/PurchaseOrderDetailReport?VendorID=-1&FilterBy=0&' + this.urlparam + '&StartDate=' + x + '&StopDate=' + this.datesuffix,
+			SalesTransactions: x => this.source_endpoint + '/customizedreports/salesextendeddetailreport?' + this.urlparam + '&StartDate=' + x + '&StopDate=' + this.datesuffix,
+			HR_Employee: x => this.source_endpoint + '/Employees?' + this.urlparam + '&StartDate=' + x + '&StopDate=' + this.datesuffix,
+			PII_Customer: x => this.source_endpoint + '/Customers?' + this.urlparam + '&StartDate=' + x + '&StopDate=' + this.datesuffix,
+			Coupons: x => this.source_endpoint + '/lists/CouponID?' + this.urlparam,
+			InventoryListReport_B10_Q1: x => this.source_endpoint + '/reports/inventorylistingreport?BinStatus=10&QtyStatus=1&BlindInventory=0&' + this.urlparam + '&DateAsOf=' + this.datesuffix,
+			InventoryListReport_B10_Q2: x => this.source_endpoint + '/reports/inventorylistingreport?BinStatus=10&QtyStatus=2&BlindInventory=0&' + this.urlparam + '&DateAsOf=' + this.datesuffix,
+			InventoryListReport_B2_Q3: x => this.source_endpoint + '/reports/inventorylistingreport?BinStatus=2&QtyStatus=3&BlindInventory=0&' + this.urlparam + '&DateAsOf=' + this.datesuffix,
+			InventoryListReport_B3_Q3: x => this.source_endpoint + '/reports/inventorylistingreport?BinStatus=3&QtyStatus=3&BlindInventory=0&' + this.urlparam + '&DateAsOf=' + this.datesuffix,
+			InventoryListReport_B4_Q3: x => this.source_endpoint + '/reports/inventorylistingreport?BinStatus=4&QtyStatus=3&BlindInventory=0&' + this.urlparam + '&DateAsOf=' + this.datesuffix,
+			InventoryListReport_B5_Q3: x => this.source_endpoint + '/reports/inventorylistingreport?BinStatus=5&QtyStatus=3&BlindInventory=0&' + this.urlparam + '&DateAsOf=' + this.datesuffix,
+			InventoryListReport_B6_Q3: x => this.source_endpoint + '/reports/inventorylistingreport?BinStatus=6&QtyStatus=3&BlindInventory=0&' + this.urlparam + '&DateAsOf=' + this.datesuffix,
+			InventoryListReport_B7_Q3: x => this.source_endpoint + '/reports/inventorylistingreport?BinStatus=7&QtyStatus=3&BlindInventory=0&' + this.urlparam + '&DateAsOf=' + this.datesuffix,
+			InventoryListReport_B8_Q3: x => this.source_endpoint + '/reports/inventorylistingreport?BinStatus=8&QtyStatus=3&BlindInventory=0&' + this.urlparam + '&DateAsOf=' + this.datesuffix
+		},
+		sftp:
+		{
+			url: 'sftp://34.230.237.61/rq/',
+			replace_space: x => x.replace(/ /g,"%20"),
+			revert_space: x => x.replace(/%20/g," "),
+			archiveflag: 'Y',
+			archivepath: 'sftp://34.230.237.61/rq/Work/Archive/'+Date.now().toLocaleDateTimeString('{"format":"yyyy", "timeZone":"CST"}')+'/'+Date.now().toLocaleDateTimeString('{"format":"yyyyMMdd", "timeZone":"CST"}')+'/',
+			stfname:
+			{
+				ShipmentDetail_suffix: Date.now().minusDays(1).toLocaleDateTimeString('{"format":"ddMMyy", "timeZone":"CST"}'),
+				DealerCodes_suffix: Date.now().minusDays(1).toLocaleDateTimeString('{"format":"yyyy-MM-dd", "timeZone":"CST"}'),
+				SpringMobileStoreList_suffix: Date.now().minusDays(1).toLocaleDateTimeString('{"format":"MM.dd.yyyy", "timeZone":"CST"}'),
+				StoreTraffic_suffix: Date.now().minusDays(1).toLocaleDateTimeString('{"format":"yyyyMMdd", "timeZone":"CST"}'),
+				mmmyy_suffix: Date.now().toLocaleDateTimeString('{"format":"MMMyy", "timeZone":"CST"}'),
+				SpringMobileStoreList: 'Spring Mobile Store List - '+this.SpringMobileStoreList_suffix+'*.csv',
+				DealerCodes: 'Dealer Codes-TB_'+this.DealerCodes_suffix+'*.csv',
+				BAELocation: 'BAE Location*.csv',
+				StoreTraffic: 'Spring_'+this.StoreTraffic_suffix+'*.csv',
+				ATTHistorical: 'AT&T MyResults*.xlsx',
+				ShipmentDetail: 'Custom_iStore_Shipment_Detail__'+this.ShipmentDetail_suffix+'*.xls',
+				MiscAdjustments: 'Misc Adjustments*.xlsx',
+				DTVNow: 'DTV Now Locations*.xlsx',
+				GoalPoints: 'Goal Points Configuration*.xlsx',
+				TransAdjEMP: this.mmmyy_suffix+' Transaction Adjustment-Employee*.xlsx',
+				TransAdjStore: this.mmmyy_suffix+' Transaction Adjustment-Store*.xlsx',
+				EmpGpGoal: 'Employee_GP_Goal*.csv'
+			},
+			FlagNotFound:
+			{
+				SpringMobileStoreList: 'N',
+				DealerCodes: 'N',
+				BAELocation: 'N',
+				StoreTraffic: 'N',
+				ATTHistorical: 'N',
+				ShipmentDetail: 'N',
+				MiscAdjustments: 'N',
+				DTVNow: 'N',
+				GoalPoints: 'N',
+				TransAdjEMP: 'N',
+				TransAdjStore: 'N',
+				EmpGpGoal: 'N'
+			}			
+		},
+		google:
+		{
+			SPSheet:
+			{
+				currentmonthyearsuffix: Date.now().toLocaleDateTimeString('{"format":"MMMM yy", "timeZone":"CST"}'),
+				MultiTracker: 'Multi-Tracker',
+				ScoreCardGoals: 'Spring Scorecard Goals',
+				ApprovedFTE: 'Approved FTE By Location - Spring AT&T',
+				OperationalEFC: 'Operational Efficiency Scorecard ' + this.currentmonthyearsuffix,
+				ReportingDailyGP: 'Reporting Definitions & Daily GP Goals',
+				CCTrainingReport: 'C&C Training Report'
+			},
+			FlagNotFound:
+			{
+				MultiTracker: 'N',
+				ScoreCardGoals: 'N',
+				ApprovedFTE: 'N',
+				OperationalEFC: 'N',
+				ReportingDailyGP: 'N',
+				CCTrainingReport: 'N'
+			}			
+		},
+		googlefile:
+		{
+			SourceFileListURL: 'https://www.googleapis.com/drive/v2/files',
+			SourceFileDownloadURL: 'https://www.googleapis.com/drive/v3/files/',
+			SourceFileUploadURL: 'https://www.googleapis.com/upload/drive/v2/files',
+			FileName:
+			{
+				prefix_202020: Date.now().minusDays(1).toLocaleDateTimeString('{"format":"MM.dd.yy", "timeZone":"CST"}'),
+				Report202020: this.prefix_202020 + '_SPRING 202020'
+			},
+			FlagNotFound:
+			{
+				Report202020: 'N'
+			}			
+		},
+		email:
+		{
+			folder_attachment: 'GameStop/EIM_Integrations/TechBrands_EDW',
+			replace_space: x => x.replace(/ /g,"%20"),
+			revert_space: x => x.replace(/%20/g," "),			
+			attachname:
+			{
+				CustExp: 'Our Promise*.*'
+			}
+		},
+		subject:
+		{
+			sub_area: x => ' AND SP_PROCESS_SUBJECT IN (\''+ x +'\') '
+		},
+		helper:
+		{
+			datesuffix: Date.now().toLocaleDateTimeString('{"format":"yyyyMMddhhmm", "timeZone":"CST"}'),
+			suffix: (x,y) => x.replace(/ /g,"").replace(/-/g,"").replace(/'/g,"").replace(/&/g,"").replace(/\//g,"_").replace(/\(/g,"").replace(/\)/g,"") + '_' + this.datesuffix + y
+		}		
+	}
+}
